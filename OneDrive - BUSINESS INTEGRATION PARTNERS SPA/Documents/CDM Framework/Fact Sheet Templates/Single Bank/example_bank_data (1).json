@@ -1,0 +1,135 @@
+{
+  "bank": {
+    "name": "Deutsche Bank",
+    "shortName": "DB",
+    "classification": "PRAGMATIST",
+    "confidence": 4,
+    "headquarters": "Frankfurt, Germany",
+    "derivativesTier": "G-SIB (Top 10 global)",
+    "derivativesNotional": "~€42 trillion (2023)",
+    "revenue2023": "€28.9B",
+    "finosTier": "Platinum Member",
+    "techStack": "GitLab DevCloud; Waltz",
+    "emirVendor": null,
+    "similarBanks": ["SocGen", "Barclays"]
+  },
+  "positioning": {
+    "keyImplication": "They understand CDM's value but deprioritized it. Reopening requires linking CDM to their cloud/data strategy.",
+    "bullets": [
+      "Participated in FINOS Legend pilot (2020-21) — FX Options extensions still in production CDM",
+      "No CDM-specific activity observed since (zero commits, no DRR announcements, no WG participation)",
+      "Strategically pivoted to cloud infrastructure — active in FINOS CCC, but not derivatives domain modeling"
+    ],
+    "timing": {
+      "urgency": "URGENT — HK/Canada deadline imminent",
+      "rationale": "Outreach now catches year-end urgency or Q1 2026 budget planning for CFTC wave."
+    }
+  },
+  "evidence": [
+    { "year": "2021-25", "text": "Zero CDM commits, DRR announcements, or WG participation" },
+    { "year": "2023", "text": "Active CCC participant (cloud focus) — rapport builder" },
+    { "year": "2020", "text": "Waltz contributed to FINOS (proves OS capability)" },
+    { "year": "2020", "text": "Legend pilot — FX Options extensions accepted" },
+    { "year": "2021", "text": "Russell Green elected FINOS Board Vice Chair" }
+  ],
+  "leadWith": "\"Your Legend FX Options model is still in production CDM today.\"",
+  "competitivePosition": [
+    { "bank": "BNP Paribas", "cdmStatus": "ARCHITECT", "drr": "Tested", "when": "Q4 2022", "highlight": false },
+    { "bank": "Barclays", "cdmStatus": "PRAGMATIST", "drr": "No evid.", "when": null, "highlight": false },
+    { "bank": "Deutsche Bank", "cdmStatus": "PRAGMATIST", "drr": "Unknown", "when": null, "highlight": true },
+    { "bank": "JPMorgan", "cdmStatus": "ARCHITECT", "drr": "Yes", "when": "Q3 2024", "highlight": false }
+  ],
+  "peerPressureScript": {
+    "text": "JPMorgan went live Q3 2024. BNP tested two years ago. How are you thinking about your position?",
+    "warning": "Frame as curiosity, not accusation."
+  },
+  "regulatoryUrgency": [
+    { "deadline": "Apr 2024", "regulation": "EMIR Refit", "status": "Done", "penaltyRisk": "€5M / 10% turnover" },
+    { "deadline": "Sep 2024", "regulation": "UK EMIR", "status": "Done", "penaltyRisk": "£1M + censure" },
+    { "deadline": "End 2025", "regulation": "HK/Canada", "status": "Upcoming", "penaltyRisk": "HK$10M; Admin" },
+    { "deadline": "TBD", "regulation": "CFTC +40", "status": "Proposed", "penaltyRisk": "$1M+ per violation" }
+  ],
+  "regulatoryFootnote": "2023-24: ESMA issued €2.5M in EMIR fines; UK FCA fined G-SIB £1.8M for reporting gaps.",
+  "discoveryQuestion": "How did you approach HK/Canada — same as EMIR or different?",
+  "engagementAngles": {
+    "openers": [
+      { "audience": "Reg Reporting", "script": "\"Your Legend pilot shaped CDM's FX model — how did that factor into HK/Canada?\"" },
+      { "audience": "Architecture/CTO", "script": "\"Given your CCC leadership, how are you thinking about CDM/DRR in cloud transformation?\"" },
+      { "audience": "Any stakeholder", "script": "\"JPMorgan just published their DRR journey — would a briefing be useful?\"" }
+    ],
+    "rapportBuilders": [
+      { "entity": "Waltz", "context": "(FINOS app architecture tool)", "usage": "to show homework on their open source strategy." },
+      { "entity": "Russell Green", "context": "(Chief Architect)", "usage": "is the known FINOS contact — but note he's now cloud-focused, not CDM-focused." }
+    ]
+  },
+  "objectionHandling": [
+    {
+      "theySay": "We evaluated CDM and moved on",
+      "youSay": "That was pre-DRR production. JPMorgan deployed for CFTC — ROI case fundamentally changed since 2021."
+    },
+    {
+      "theySay": "We built our own solution",
+      "youSay": "That makes sense for EMIR. How are you planning HK, Canada, CFTC — same approach or open to alternatives?"
+    },
+    {
+      "theySay": "Not a priority right now",
+      "youSay": "Understood. Once HK/Canada is behind you, can we reconnect on CFTC planning in Q1?"
+    }
+  ],
+  "costOfInaction": {
+    "fiveYearCost": "€75-150M",
+    "fiveYearBasis": "Reconciliation + 3 jurisdiction implementations",
+    "annualCosts": [
+      { "item": "Reg reporting reconciliation", "cost": "€15-25M/year" },
+      { "item": "Per-jurisdiction implementation", "cost": "€3-8M each" },
+      { "item": "Est. cost per reportable trade", "cost": "€0.15-0.40" }
+    ],
+    "redeployable": "30-40% (~€5-10M)",
+    "benchmark": "BNP reported 35% reduction in reconciliation effort after 2022 CDM/DRR pilot."
+  },
+  "landmines": [
+    { "phrase": "\"You abandoned CDM\"", "sayInstead": "You've been focused on other priorities..." },
+    { "phrase": "\"Green leads CDM\"", "reason": "he's cloud-focused now" },
+    { "phrase": "\"Legend pilot failed\"", "reason": "it succeeded" },
+    { "phrase": "Assume their vendor", "reason": "unknown; let them tell you" },
+    { "phrase": "\"You're behind\"", "sayInstead": "How are you thinking about your position?" }
+  ],
+  "nextActions": {
+    "outreachDeadline": "December 30, 2025",
+    "deadlineRationale": "HK/Canada deadline days away — catch them in solution mode or pivot to CFTC",
+    "primaryAsk": {
+      "action": "30-min discovery call",
+      "target": "Regulatory Reporting",
+      "objective": "understand HK/Canada approach and 2026 roadmap"
+    },
+    "fallback": "If Architecture entry, frame as \"CDM/DRR as part of your cloud-native reporting strategy.\"",
+    "emailTemplate": {
+      "subject": "CDM/DRR — Building on Deutsche Bank's Legend Foundation",
+      "body": "[Name], Your team's work on the FINOS Legend pilot shaped CDM's FX Options model — it's still in production today. With HK/Canada deadlines upon us and CFTC changes ahead, I'd welcome 30 minutes to discuss how that foundation could inform your 2026 roadmap. Would [date] work? [Signature]"
+    },
+    "callAgenda": [
+      { "duration": "5 min", "topic": "Their EMIR Refit approach (build/buy/vendor?)" },
+      { "duration": "10 min", "topic": "2026 roadmap — CFTC, future jurisdictions" },
+      { "duration": "10 min", "topic": "Pain points in current process" },
+      { "duration": "5 min", "topic": "Next steps and follow-up" }
+    ],
+    "successIndicators": [
+      { "signal": "Share vendor details", "meaning": "High engagement", "positive": true },
+      { "signal": "Offer introduction", "meaning": "Strong interest", "positive": true },
+      { "signal": "Ask pricing/timeline", "meaning": "Active evaluation", "positive": true },
+      { "signal": "\"Send materials\" (no date)", "meaning": "Polite deflection", "positive": false }
+    ],
+    "followUpCadence": [
+      { "day": 3, "action": "Brief bump email" },
+      { "day": 7, "action": "Add value (share relevant article)" },
+      { "day": 14, "action": "Final attempt, offer alternative contact" }
+    ],
+    "discoveryQuestions": [
+      "How did you handle HK/Canada?",
+      "What's your 2026 reg reporting roadmap?",
+      "Who owns reporting technology decisions?"
+    ]
+  },
+  "confidenceNotes": "Classification based on public signals only. Internal CDM usage cannot be ruled out. Adjacent FINOS activity (CCC, Waltz) confirms organizational capability — CDM silence is informative.",
+  "nextReview": "Q1 2026"
+}

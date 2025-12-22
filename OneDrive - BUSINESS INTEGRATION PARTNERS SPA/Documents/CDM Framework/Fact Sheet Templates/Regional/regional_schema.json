@@ -1,0 +1,226 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CDM/DRR Regional Analysis Data",
+  "description": "Schema for regional fact sheet generator input",
+  "type": "object",
+  "required": ["meta", "summary", "deadlines", "maturitySpectrum", "bankQuickReference"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["regionId", "name", "bankCount"],
+      "properties": {
+        "regionId": { "type": "string", "description": "Region identifier (e.g., EU_GSIB, US_GSIB)" },
+        "name": { "type": "string", "description": "Region display name" },
+        "displayName": { "type": "string", "description": "Full display name for header" },
+        "bankCount": { "type": "integer", "minimum": 1 },
+        "generatedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "required": ["totalNotional", "archetypeDistribution", "keyInsight"],
+      "properties": {
+        "totalNotional": { "type": "string", "description": "e.g., '~$85 trillion'" },
+        "dominantArchetype": { "enum": ["ARCHITECT", "PRAGMATIST", "OBSERVER"] },
+        "archetypeDistribution": {
+          "type": "object",
+          "required": ["ARCHITECT", "PRAGMATIST", "OBSERVER"],
+          "properties": {
+            "ARCHITECT": { "type": "integer", "minimum": 0 },
+            "PRAGMATIST": { "type": "integer", "minimum": 0 },
+            "OBSERVER": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "priorArchetypeDistribution": {
+          "type": "object",
+          "description": "Previous quarter distribution for trend calculation",
+          "properties": {
+            "ARCHITECT": { "type": "integer" },
+            "PRAGMATIST": { "type": "integer" },
+            "OBSERVER": { "type": "integer" }
+          }
+        },
+        "keyInsight": { "type": "string", "description": "3-sentence actionable insight with dollar values and deadlines" },
+        "readinessScore": {
+          "type": "object",
+          "properties": {
+            "engaged": { "type": "integer" },
+            "total": { "type": "integer" },
+            "display": { "type": "string" }
+          }
+        },
+        "avgConfidence": {
+          "type": "object",
+          "properties": {
+            "score": { "type": "number" },
+            "display": { "type": "string" },
+            "lowConfidenceBanks": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      }
+    },
+    "deadlines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "date", "status"],
+        "properties": {
+          "name": { "type": "string" },
+          "date": { "type": "string" },
+          "status": { "enum": ["Active", "Upcoming", "Done"] },
+          "isActive": { "type": "boolean" },
+          "affectedBanks": { "type": "array", "items": { "type": "string" } },
+          "countdown": { "type": ["string", "null"], "description": "e.g., 'NOW', '9 months'" },
+          "impact": { "type": ["string", "null"] },
+          "penaltyExposure": { "type": ["string", "null"], "description": "e.g., '$25M+ annual penalty risk'" }
+        }
+      }
+    },
+    "maturitySpectrum": {
+      "type": "object",
+      "required": ["ARCHITECT", "PRAGMATIST", "OBSERVER"],
+      "properties": {
+        "ARCHITECT": { "type": "array", "items": { "$ref": "#/definitions/spectrumBank" } },
+        "PRAGMATIST": { "type": "array", "items": { "$ref": "#/definitions/spectrumBank" } },
+        "OBSERVER": { "type": "array", "items": { "$ref": "#/definitions/spectrumBank" } }
+      }
+    },
+    "maturityMovements": {
+      "type": "object",
+      "description": "Track bank movements between quarters",
+      "additionalProperties": { "enum": ["up", "down"] }
+    },
+    "bankQuickReference": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["shortName", "archetype", "urgency", "entryPoint"],
+        "properties": {
+          "name": { "type": "string" },
+          "shortName": { "type": "string" },
+          "notional": { "type": "string" },
+          "archetype": { "enum": ["ARCHITECT", "PRAGMATIST", "OBSERVER"] },
+          "drrStatus": { "type": "string" },
+          "urgency": { "enum": ["HIGH", "MED", "LOW"] },
+          "urgencyRationale": { "type": "string", "maxLength": 30 },
+          "entryPoint": { "type": "string" },
+          "lastTouch": { "type": "string", "description": "e.g., 'Dec 2025'" },
+          "dealStage": { "type": "string", "description": "e.g., 'Partnership', 'Discovery', 'Proposal'" },
+          "confidence": { "type": "integer", "minimum": 1, "maximum": 5 }
+        }
+      }
+    },
+    "patterns": {
+      "type": "object",
+      "properties": {
+        "commonObjections": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "text": { "type": "string" },
+              "count": { "type": "integer" },
+              "banks": { "type": "array", "items": { "type": "string" } },
+              "counter": { "type": "string", "description": "Counter-argument script" },
+              "assets": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        },
+        "regionalSensitivity": {
+          "type": "object",
+          "properties": {
+            "phrase": { "type": "string", "description": "The phrase to avoid" },
+            "severity": { "enum": ["CRITICAL", "HIGH", "MEDIUM"] },
+            "whyItFails": { "type": "string" },
+            "sayInstead": { "type": "string" }
+          }
+        },
+        "competitorActivity": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "competitor": { "type": "string" },
+              "bank": { "type": "string" },
+              "stage": { "type": "string" },
+              "threat": { "enum": ["HIGH", "MEDIUM", "LOW"] }
+            }
+          }
+        },
+        "budgetCycle": { "type": "string" }
+      }
+    },
+    "recommendedSequence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["shortName", "timing", "rationale"],
+        "properties": {
+          "rank": { "type": "integer" },
+          "name": { "type": "string" },
+          "shortName": { "type": "string" },
+          "archetype": { "enum": ["ARCHITECT", "PRAGMATIST", "OBSERVER"] },
+          "timing": { "type": "string", "description": "e.g., 'Now', 'Q1 2026'" },
+          "rationale": { "type": "string" },
+          "approach": { "type": "string" },
+          "successMetric": { "type": "string" },
+          "dependency": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "priorityActions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["bank", "action", "timeframe"],
+        "properties": {
+          "bank": { "type": "string" },
+          "action": { "type": "string" },
+          "timeframe": { "type": "string", "description": "e.g., 'Week 1', 'Week 2'" },
+          "owner": { "type": "string" },
+          "contact": { "type": "string" },
+          "channel": { "type": "string" },
+          "deliverable": { "type": "string" },
+          "escalation": { "type": "string" }
+        }
+      }
+    },
+    "crossSellingOpportunities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "string" },
+          "banks": { "type": "array", "items": { "type": "string" } },
+          "description": { "type": "string" }
+        }
+      }
+    },
+    "bottomLine": { "type": "string" },
+    "bottomLineStructured": {
+      "type": "object",
+      "properties": {
+        "summary": { "type": "string" },
+        "timeline": { "type": "string" },
+        "risk": { "type": "string" },
+        "resourceAsk": { "type": "string" },
+        "nextReview": { "type": "string" }
+      }
+    }
+  },
+  "definitions": {
+    "spectrumBank": {
+      "type": "object",
+      "required": ["shortName"],
+      "properties": {
+        "name": { "type": "string" },
+        "shortName": { "type": "string" },
+        "notional": { "type": "string" },
+        "confidence": { "type": "integer" },
+        "drrStatus": { "type": "string" },
+        "drrIndicator": { "type": "string", "description": "● Live, ○ Tested, ? Unknown, — None" },
+        "timing": { "type": "string" }
+      }
+    }
+  }
+}

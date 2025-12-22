@@ -1,0 +1,241 @@
+{
+  "meta": {
+    "regionId": "EU_GSIB",
+    "name": "European G-SIBs",
+    "displayName": "European G-SIBs",
+    "bankCount": 3,
+    "generatedAt": "2025-12-22T00:00:00.000Z"
+  },
+  "summary": {
+    "totalNotional": "~$85 trillion",
+    "dominantArchetype": "PRAGMATIST",
+    "archetypeDistribution": {
+      "ARCHITECT": 1,
+      "PRAGMATIST": 2,
+      "OBSERVER": 0
+    },
+    "priorArchetypeDistribution": {
+      "ARCHITECT": 0,
+      "PRAGMATIST": 3,
+      "OBSERVER": 0
+    },
+    "regulatoryContext": "EMIR Refit complete, UK EMIR done, HK/Canada imminent",
+    "keyDeadlines": ["EMIR Refit (Apr 2024 — Done)", "UK EMIR (Sep 2024 — Done)", "HK/Canada (End 2025)"],
+    "readinessScore": {
+      "engaged": 1,
+      "total": 3,
+      "percentage": 33,
+      "display": "1/3"
+    },
+    "keyInsight": "HK/Canada deadline is NOW (Dec 2025): UBS ($28T) validates approach for DB and SocGen ($57T combined). DB budget approved — execute before year-end. Action: Finalize UBS case study this week, accelerate DB proposal for Q1 2026 implementation.",
+    "avgConfidence": {
+      "score": 5.0,
+      "display": "●●●●●",
+      "lowConfidenceBanks": []
+    }
+  },
+  "deadlines": [
+    { 
+      "name": "HK/Canada", 
+      "date": "Dec 2025", 
+      "status": "Active", 
+      "affectedBanks": ["DB", "UBS"], 
+      "isActive": true,
+      "countdown": "NOW",
+      "impact": "DB primary ($42T exposure)",
+      "penaltyExposure": "$25M+ annual penalty risk"
+    },
+    { 
+      "name": "CFTC Phase 2", 
+      "date": "Q3 2026", 
+      "status": "Upcoming", 
+      "affectedBanks": ["All"], 
+      "isActive": false,
+      "countdown": "9 months",
+      "impact": "Early mover advantage window",
+      "penaltyExposure": null
+    },
+    { 
+      "name": "EMIR Refit", 
+      "date": "Apr 2024", 
+      "status": "Done", 
+      "affectedBanks": ["UBS", "DB", "SocGen"], 
+      "isActive": false,
+      "countdown": null,
+      "impact": "Leverage as proof point"
+    },
+    { 
+      "name": "UK EMIR", 
+      "date": "Sep 2024", 
+      "status": "Done", 
+      "affectedBanks": ["UBS", "DB", "SocGen"], 
+      "isActive": false,
+      "countdown": null,
+      "impact": null
+    }
+  ],
+  "maturitySpectrum": {
+    "ARCHITECT": [
+      { "name": "UBS", "shortName": "UBS", "notional": "$28T", "confidence": 5, "drrStatus": "Tested", "drrIndicator": "○", "timing": "MODERATE" }
+    ],
+    "PRAGMATIST": [
+      { "name": "Deutsche Bank", "shortName": "DB", "notional": "$42T", "confidence": 5, "drrStatus": "Unknown", "drrIndicator": "?", "timing": "HIGH — HK/Canada deadline" },
+      { "name": "Société Générale", "shortName": "SocGen", "notional": "$15T", "confidence": 5, "drrStatus": "No evid.", "drrIndicator": "—", "timing": "MODERATE" }
+    ],
+    "OBSERVER": []
+  },
+  "maturityMovements": {
+    "UBS": "up"
+  },
+  "patterns": {
+    "commonObjections": [
+      { 
+        "text": "We're building internally / have existing solutions", 
+        "count": 2, 
+        "banks": ["DB", "SocGen"],
+        "counter": "Reference Barclays TCO study: 40% cost reduction vs. internal builds. Highlight 12 regulatory updates/year velocity.",
+        "assets": ["Barclays Case Study", "TCO Calculator", "Regulatory Update Timeline"]
+      },
+      { 
+        "text": "Not a priority right now", 
+        "count": 1, 
+        "banks": ["SocGen"],
+        "counter": "HK/Canada deadline is NOW. DB signing Q1 2026 — SocGen will be only major EU G-SIB without CDM.",
+        "assets": ["HK/Canada Compliance Deck", "Peer Activity Summary"]
+      }
+    ],
+    "regionalSensitivity": {
+      "phrase": "You're behind US banks",
+      "severity": "HIGH",
+      "frequency": 3,
+      "banks": ["UBS", "DB", "SocGen"],
+      "whyItFails": "European executives view as condescending; triggers 'not invented here' response",
+      "sayInstead": "European banks navigated unique EMIR complexity — that positions you to lead on HK/Canada."
+    },
+    "competitorActivity": [
+      { "competitor": "Bloomberg", "bank": "DB", "stage": "Pricing discussions", "threat": "HIGH" },
+      { "competitor": "Refinitiv", "bank": "SocGen", "stage": "Early discovery", "threat": "MEDIUM" }
+    ],
+    "budgetCycle": "EU banks: 2026 budgets locked, Q1 execution window open (Jan-Mar)"
+  },
+  "bankQuickReference": [
+    { 
+      "name": "UBS", 
+      "shortName": "UBS", 
+      "notional": "$28T",
+      "archetype": "ARCHITECT", 
+      "drrStatus": "Tested", 
+      "urgency": "LOW", 
+      "urgencyRationale": "Expanding CDM use cases", 
+      "entryPoint": "Co-marketing partner",
+      "lastTouch": "Dec 2025",
+      "dealStage": "Partnership",
+      "confidence": 5
+    },
+    { 
+      "name": "Deutsche Bank", 
+      "shortName": "DB",
+      "notional": "$42T",
+      "archetype": "PRAGMATIST", 
+      "drrStatus": "Unknown", 
+      "urgency": "HIGH", 
+      "urgencyRationale": "HK/Canada NOW", 
+      "entryPoint": "Regulatory deadline",
+      "lastTouch": "Dec 2025",
+      "dealStage": "Proposal",
+      "confidence": 5
+    },
+    { 
+      "name": "Société Générale", 
+      "shortName": "SocGen",
+      "notional": "$15T",
+      "archetype": "PRAGMATIST", 
+      "drrStatus": "No evid.", 
+      "urgency": "MED", 
+      "urgencyRationale": "Peer momentum", 
+      "entryPoint": "Peer pressure",
+      "lastTouch": "Nov 2025",
+      "dealStage": "Discovery",
+      "confidence": 5
+    }
+  ],
+  "recommendedSequence": [
+    { 
+      "rank": 1, 
+      "name": "UBS", 
+      "shortName": "UBS", 
+      "archetype": "ARCHITECT", 
+      "timing": "Now",
+      "rationale": "Finalize case study before year-end",
+      "approach": "Partnership (not sales)",
+      "successMetric": "Case study by Jan 2026",
+      "dependency": null
+    },
+    { 
+      "rank": 2, 
+      "name": "Deutsche Bank", 
+      "shortName": "DB", 
+      "archetype": "PRAGMATIST",
+      "timing": "Q1 2026",
+      "rationale": "HK/Canada compliance — budget approved",
+      "approach": "Regulatory compliance angle",
+      "successMetric": "Contract by Mar 2026",
+      "dependency": "UBS case study"
+    },
+    { 
+      "rank": 3, 
+      "name": "Société Générale", 
+      "shortName": "SocGen", 
+      "archetype": "PRAGMATIST",
+      "timing": "Q2 2026",
+      "rationale": "Follower — moves when peers move",
+      "approach": "Peer pressure + competitive positioning",
+      "successMetric": "Proposal by Jun 2026",
+      "dependency": "DB in implementation"
+    }
+  ],
+  "priorityActions": [
+    { 
+      "bank": "UBS", 
+      "action": "Schedule co-marketing partnership call", 
+      "timeframe": "Week 1",
+      "owner": "Partnership Manager",
+      "contact": "John Smith, CTO",
+      "channel": "Existing Product relationship",
+      "deliverable": "Meeting confirmed",
+      "escalation": "VP Partnerships if no response by Day 3"
+    },
+    { 
+      "bank": "DB", 
+      "action": "Deliver regulatory deadline impact deck", 
+      "timeframe": "Week 2",
+      "owner": "Enterprise AE",
+      "contact": "Jane Doe, Head of Reg Tech",
+      "channel": "Cold outreach + exec intro",
+      "deliverable": "Deck sent + follow-up scheduled",
+      "escalation": "Executive intro if no open by Day 5"
+    },
+    { 
+      "bank": "SocGen", 
+      "action": "Initial outreach citing peer momentum", 
+      "timeframe": "Week 3",
+      "owner": "Inside Sales",
+      "contact": "TBD — research needed",
+      "channel": "Email + LinkedIn",
+      "deliverable": "Intro email sent",
+      "escalation": "Contingent on DB progress"
+    }
+  ],
+  "crossSellingOpportunities": [
+    { "type": "FINOS Members", "banks": ["UBS", "DB"], "description": "Both are active FINOS contributors — propose joint working group" },
+    { "type": "EMIR Refit Cohort", "banks": ["UBS", "DB", "SocGen"], "description": "All completed EMIR Refit — shared learnings on DRR extension" }
+  ],
+  "bottomLine": "European G-SIBs: $85T opportunity — HK/Canada deadline is NOW. UBS case study in progress → DB proposal for Q1 2026 implementation → SocGen follows Q2. Risk: Bloomberg active with DB. Next review: Jan 6, 2026.",
+  "bottomLineStructured": {
+    "summary": "European G-SIBs: $85T opportunity, $15-25M pipeline potential. UBS finalizing → DB Q1 2026 → SocGen Q2 2026.",
+    "timeline": "6-month conversion window (Q1-Q2 2026)",
+    "risk": "Bloomberg active with DB",
+    "resourceAsk": "Partnership team (UBS), Solutions architect (DB)",
+    "nextReview": "Jan 6, 2026"
+  }
+}

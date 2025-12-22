@@ -1,0 +1,456 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CDM/DRR Bank Fact Sheet Data",
+  "description": "Schema for validated bank research data used to generate fact sheets",
+  "type": "object",
+  "required": [
+    "bank",
+    "positioning",
+    "evidence",
+    "leadWith",
+    "competitivePosition",
+    "peerPressureScript",
+    "regulatoryUrgency",
+    "engagementAngles",
+    "objectionHandling",
+    "costOfInaction",
+    "landmines",
+    "nextActions",
+    "confidenceNotes",
+    "nextReview"
+  ],
+  "properties": {
+    "bank": {
+      "type": "object",
+      "required": [
+        "name",
+        "shortName",
+        "classification",
+        "confidence",
+        "headquarters",
+        "derivativesTier",
+        "derivativesNotional",
+        "revenue2023",
+        "finosTier",
+        "techStack",
+        "similarBanks"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Full bank name"
+        },
+        "shortName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 10,
+          "description": "Short identifier (e.g., DB, JPM, GS)"
+        },
+        "classification": {
+          "type": "string",
+          "enum": ["ARCHITECT", "PRAGMATIST", "OBSERVER"],
+          "description": "CDM engagement archetype"
+        },
+        "confidence": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "description": "Classification confidence (1-5)"
+        },
+        "headquarters": {
+          "type": "string",
+          "minLength": 1,
+          "description": "City, Country"
+        },
+        "derivativesTier": {
+          "type": "string",
+          "minLength": 1,
+          "description": "e.g., G-SIB (Top 10 global)"
+        },
+        "derivativesNotional": {
+          "type": "string",
+          "minLength": 1,
+          "description": "e.g., ~$50 trillion (2023)"
+        },
+        "revenue2023": {
+          "type": "string",
+          "minLength": 1,
+          "description": "e.g., $120B"
+        },
+        "finosTier": {
+          "type": "string",
+          "minLength": 1,
+          "description": "FINOS membership level"
+        },
+        "techStack": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Known technology systems"
+        },
+        "emirVendor": {
+          "type": ["string", "null"],
+          "description": "EMIR reporting vendor if known"
+        },
+        "similarBanks": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1,
+          "maxItems": 4,
+          "description": "Comparable banks for playbook reuse"
+        }
+      }
+    },
+    "positioning": {
+      "type": "object",
+      "required": ["keyImplication", "bullets", "timing"],
+      "properties": {
+        "keyImplication": {
+          "type": "string",
+          "minLength": 50,
+          "maxLength": 500,
+          "description": "Main strategic insight for amber callout"
+        },
+        "bullets": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 20 },
+          "minItems": 3,
+          "maxItems": 3,
+          "description": "Exactly 3 position summary bullets"
+        },
+        "timing": {
+          "type": "object",
+          "required": ["urgency", "rationale"],
+          "properties": {
+            "urgency": {
+              "type": "string",
+              "minLength": 10,
+              "description": "Urgency statement (e.g., URGENT — HK/Canada deadline imminent)"
+            },
+            "rationale": {
+              "type": "string",
+              "minLength": 20,
+              "description": "Why now is the right time"
+            }
+          }
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["year", "text"],
+        "properties": {
+          "year": {
+            "type": "string",
+            "pattern": "^[0-9]{4}(-[0-9]{2})?$",
+            "description": "Year or year range (YYYY or YYYY-YY)"
+          },
+          "text": {
+            "type": "string",
+            "minLength": 10,
+            "description": "Evidence description"
+          }
+        }
+      },
+      "minItems": 4,
+      "maxItems": 6,
+      "description": "Timeline evidence items"
+    },
+    "leadWith": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 200,
+      "description": "Opening hook for LEAD WITH callout"
+    },
+    "competitivePosition": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["bank", "cdmStatus", "drr"],
+        "properties": {
+          "bank": { "type": "string" },
+          "cdmStatus": {
+            "type": "string",
+            "enum": ["ARCHITECT", "PRAGMATIST", "OBSERVER"]
+          },
+          "drr": {
+            "type": "string",
+            "enum": ["Yes", "Tested", "No evid.", "Unknown"]
+          },
+          "when": {
+            "type": ["string", "null"],
+            "description": "Quarter/year if applicable"
+          },
+          "highlight": {
+            "type": "boolean",
+            "default": false,
+            "description": "True for the subject bank"
+          }
+        }
+      },
+      "minItems": 4,
+      "maxItems": 6,
+      "description": "Peer comparison table"
+    },
+    "peerPressureScript": {
+      "type": "object",
+      "required": ["text", "warning"],
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 20,
+          "description": "Peer pressure talking point"
+        },
+        "warning": {
+          "type": "string",
+          "default": "Frame as curiosity, not accusation.",
+          "description": "Caution note"
+        }
+      }
+    },
+    "regulatoryUrgency": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["deadline", "regulation", "status", "penaltyRisk"],
+        "properties": {
+          "deadline": {
+            "type": "string",
+            "description": "e.g., Apr 2024, End 2025, TBD"
+          },
+          "regulation": {
+            "type": "string",
+            "description": "e.g., EMIR Refit, UK EMIR, HK/Canada, CFTC +40"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["Done", "Upcoming", "Proposed"]
+          },
+          "penaltyRisk": {
+            "type": "string",
+            "description": "e.g., €5M / 10% turnover"
+          }
+        }
+      },
+      "minItems": 4,
+      "maxItems": 5
+    },
+    "regulatoryFootnote": {
+      "type": "string",
+      "description": "Context note about regulatory enforcement"
+    },
+    "discoveryQuestion": {
+      "type": "string",
+      "minLength": 20,
+      "description": "Question for Regulatory Urgency section"
+    },
+    "engagementAngles": {
+      "type": "object",
+      "required": ["openers", "rapportBuilders"],
+      "properties": {
+        "openers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["audience", "script"],
+            "properties": {
+              "audience": { "type": "string" },
+              "script": { "type": "string", "minLength": 20 }
+            }
+          },
+          "minItems": 3,
+          "maxItems": 4
+        },
+        "rapportBuilders": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["entity", "context", "usage"],
+            "properties": {
+              "entity": { "type": "string" },
+              "context": { "type": "string" },
+              "usage": { "type": "string" }
+            }
+          },
+          "minItems": 1,
+          "maxItems": 4
+        }
+      }
+    },
+    "objectionHandling": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["theySay", "youSay"],
+        "properties": {
+          "theySay": { "type": "string", "minLength": 10 },
+          "youSay": { "type": "string", "minLength": 20 }
+        }
+      },
+      "minItems": 3,
+      "maxItems": 4
+    },
+    "costOfInaction": {
+      "type": "object",
+      "required": ["fiveYearCost", "fiveYearBasis", "annualCosts", "redeployable", "benchmark"],
+      "properties": {
+        "fiveYearCost": {
+          "type": "string",
+          "description": "e.g., €75-150M"
+        },
+        "fiveYearBasis": {
+          "type": "string",
+          "description": "Basis for 5-year estimate"
+        },
+        "annualCosts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["item", "cost"],
+            "properties": {
+              "item": { "type": "string" },
+              "cost": { "type": "string" }
+            }
+          },
+          "minItems": 3,
+          "maxItems": 4
+        },
+        "redeployable": {
+          "type": "string",
+          "description": "e.g., 30-40% (~€5-10M)"
+        },
+        "benchmark": {
+          "type": "string",
+          "minLength": 20,
+          "description": "Peer bank savings example"
+        }
+      }
+    },
+    "landmines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["phrase"],
+        "properties": {
+          "phrase": {
+            "type": "string",
+            "description": "What not to say"
+          },
+          "reason": {
+            "type": "string",
+            "description": "Why it's problematic"
+          },
+          "sayInstead": {
+            "type": "string",
+            "description": "Alternative phrasing"
+          }
+        }
+      },
+      "minItems": 4,
+      "maxItems": 6
+    },
+    "nextActions": {
+      "type": "object",
+      "required": [
+        "outreachDeadline",
+        "deadlineRationale",
+        "primaryAsk",
+        "fallback",
+        "emailTemplate",
+        "callAgenda",
+        "successIndicators",
+        "followUpCadence",
+        "discoveryQuestions"
+      ],
+      "properties": {
+        "outreachDeadline": {
+          "type": "string",
+          "description": "Target outreach date"
+        },
+        "deadlineRationale": {
+          "type": "string",
+          "description": "Why this deadline"
+        },
+        "primaryAsk": {
+          "type": "object",
+          "required": ["action", "target", "objective"],
+          "properties": {
+            "action": { "type": "string" },
+            "target": { "type": "string" },
+            "objective": { "type": "string" }
+          }
+        },
+        "fallback": {
+          "type": "string",
+          "minLength": 20
+        },
+        "emailTemplate": {
+          "type": "object",
+          "required": ["subject", "body"],
+          "properties": {
+            "subject": { "type": "string", "minLength": 10 },
+            "body": { "type": "string", "minLength": 100 }
+          }
+        },
+        "callAgenda": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["duration", "topic"],
+            "properties": {
+              "duration": { "type": "string" },
+              "topic": { "type": "string" }
+            }
+          },
+          "minItems": 4,
+          "maxItems": 5
+        },
+        "successIndicators": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["signal", "meaning", "positive"],
+            "properties": {
+              "signal": { "type": "string" },
+              "meaning": { "type": "string" },
+              "positive": { "type": "boolean" }
+            }
+          },
+          "minItems": 4,
+          "maxItems": 5
+        },
+        "followUpCadence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["day", "action"],
+            "properties": {
+              "day": { "type": "integer" },
+              "action": { "type": "string" }
+            }
+          },
+          "minItems": 3,
+          "maxItems": 4
+        },
+        "discoveryQuestions": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 15 },
+          "minItems": 3,
+          "maxItems": 4
+        }
+      }
+    },
+    "confidenceNotes": {
+      "type": "string",
+      "minLength": 50,
+      "description": "Explanation of classification basis and caveats"
+    },
+    "nextReview": {
+      "type": "string",
+      "pattern": "^Q[1-4] [0-9]{4}$",
+      "description": "Next review date (e.g., Q1 2026)"
+    }
+  }
+}
